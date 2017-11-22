@@ -23,19 +23,19 @@
       <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/">Accueil</a>
+            <a class="nav-link" href="/" data-page="home">Accueil</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/challenges" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-page="challenges">
               Challenges
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/challenges/crack">Crack</a>
-              <a class="dropdown-item" href="/challenges/infra-reseau">Infra / Réseaux</a>
-              <a class="dropdown-item" href="/challenges/programation">Programmation</a>
-              <a class="dropdown-item" href="/challenges/shell">Shell</a>
-              <a class="dropdown-item" href="/challenges/web-serveur">Web Serveur</a>
-              <a class="dropdown-item" href="/challenges/web-client">Web Client</a>
+              <a class="dropdown-item" href="/challenges/crack" data-page="crack">Crack</a>
+              <a class="dropdown-item" href="/challenges/infra-reseau" data-page="infra-reseau">Infra / Réseaux</a>
+              <a class="dropdown-item" href="/challenges/programation" data-page="programmation">Programmation</a>
+              <a class="dropdown-item" href="/challenges/shell" data-page="shell">Shell</a>
+              <a class="dropdown-item" href="/challenges/web-serveur" data-page="web-serveur">Web Serveur</a>
+              <a class="dropdown-item" href="/challenges/web-client" data-page="web-client">Web Client</a>
             </div>
           </li>
         </ul>
@@ -54,6 +54,9 @@
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/tether/dist/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script>
+      $('a[data-page={{ page }}]').addClass('active');
+    </script>
     {% block javascript %}
     {% endblock %}
 

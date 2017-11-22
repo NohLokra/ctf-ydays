@@ -7,25 +7,21 @@ class Challenges extends MY_Controller{
     parent::__construct();
   }
 
-  // function index($category, $id = null) {
-  //   if ( $id === null ) {
-  //     // Si on a pas d'id, on affiche une catégorie
-  //     $this->_category($category);
-  //   } else {
-  //     // Sinon on affiche un challenge
-  //     $this->_challenge($category, $id);
-  //   }
-  // }
-
   function category($category) {
+    $category = $this->categories_model->getBySlug($category);
+
     $this->twig->display('challenges/category.twig', [
-      "page" => $category
+      "page" => $category->slug,
+      "category" => $category
     ]);
   }
 
   function challenge($category, $challenge_id) {
+    $challenge = $this->challenges_model->get($challenge_id);
+
     $this->twig->display('challenges/challenge.twig', [
-      "page" => $category
+      "page" => $category,
+      "challenge" => $challenge
     ]);
   }
 

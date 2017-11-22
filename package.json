@@ -1,0 +1,32 @@
+{
+  "name": "ctf-ydays",
+  "version": "1.0.0",
+  "description": "This is a capture-the-flag platform developped during the YDays sessions at Ynov Toulouse.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zozoleclown/ctf-ydays.git"
+  },
+  "keywords": [
+    "ctf",
+    "ydays",
+    "ingesup",
+    "cybersécurité"
+  ],
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^1.2.1",
+    "grunt-text-replace": "^0.4.0",
+    "load-grunt-tasks": "^3.5.2"
+  },
+  "author": "Zozo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zozoleclown/ctf-ydays/issues"
+  },
+  "homepage": "https://github.com/Zozoleclown/ctf-ydays#readme"
+}

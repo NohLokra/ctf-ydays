@@ -35,3 +35,6 @@ application/cache/*
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+
+node_modules/
+bower_components/

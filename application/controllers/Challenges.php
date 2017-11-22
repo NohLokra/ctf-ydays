@@ -8,17 +8,25 @@ class Challenges extends MY_Controller{
   }
 
   function index($category, $id = null) {
-    // Si on a pas d'id, on affiche une catégorie
     if ( $id === null ) {
-      $this->twig->display('challenges/category.twig', [
-        "page" => $category
-      ]);
+      // Si on a pas d'id, on affiche une catégorie
+      $this->_category($category);
     } else {
       // Sinon on affiche un challenge
-      $this->twig->display('challenges/challenge.twig', [
-        "page" => $category
-      ]);
+      $this->_challenge($category, $id);
     }
+  }
+
+  private function _category($category) {
+    $this->twig->display('challenges/category.twig', [
+      "page" => $category
+    ]);
+  }
+
+  private function _challenge($category, $challenge_id) {
+    $this->twig->display('challenges/challenge.twig', [
+      "page" => $category
+    ]);
   }
 
 }

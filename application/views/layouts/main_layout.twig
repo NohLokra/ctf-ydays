@@ -30,12 +30,15 @@
               Challenges
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/challenges/crack" data-page="crack">Crack</a>
+              {% for category in categories %}
+                <a class="dropdown-item" href="/challenges/{{ category.slug }}" data-page="{{ category.slug }}">{{ category.label }}</a>
+              {% endfor %}
+              <!-- <a class="dropdown-item" href="/challenges/crack" data-page="crack">Crack</a>
               <a class="dropdown-item" href="/challenges/infra-reseau" data-page="infra-reseau">Infra / Réseaux</a>
               <a class="dropdown-item" href="/challenges/programmation" data-page="programmation">Programmation</a>
               <a class="dropdown-item" href="/challenges/shell" data-page="shell">Shell</a>
               <a class="dropdown-item" href="/challenges/web-serveur" data-page="web-serveur">Web Serveur</a>
-              <a class="dropdown-item" href="/challenges/web-client" data-page="web-client">Web Client</a>
+              <a class="dropdown-item" href="/challenges/web-client" data-page="web-client">Web Client</a> -->
             </div>
           </li>
         </ul>

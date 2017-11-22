@@ -53,12 +53,14 @@ class Twig
 
 	public function render($template, $data = array())
 	{
+    $data = array_merge($data, $this->CI->load->get_vars());
 		$template = $this->_twig->loadTemplate($template);
 		return $template->render($data);
 	}
 
 	public function display($template, $data = array())
 	{
+    $data = array_merge($data, $this->CI->load->get_vars());
 		$template = $this->_twig->loadTemplate($template);
 		$template->display($data);
 	}

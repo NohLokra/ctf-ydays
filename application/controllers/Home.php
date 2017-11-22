@@ -6,7 +6,7 @@ class Home extends MY_Controller {
 	public function index() {
 		$this->load->library("twig");
 		$this->twig->display("home/index.twig", [
-      "title" => "Hi",
+      "title" => "CTF YDays",
       "page" => "home"
     ]);
 	}

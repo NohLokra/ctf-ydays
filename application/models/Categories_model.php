@@ -7,6 +7,13 @@ class Categories_model extends MY_Model {
   }
 
   public function getBySlug($slug) {
-    return $this->db->where('slug', $slug)->get($this->table)->row();
+    $this->load->model('challenges_model');
+    $category = $this->db->where('slug', $slug)->get($this->table)->row();
+    $category->challenges = $this->challenges_model->getForCategory($category->id);
+
+    if ( !$category->challenges )
+      $category->challenges = [];
+
+    return $category;
   }
 }

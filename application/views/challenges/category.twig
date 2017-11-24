@@ -3,4 +3,9 @@
 {% block body %}
   <h1>{{ category.label }}</h1>
   <p>{{ category.description }}</p>
+  <ul>
+    {% for challenge in category.challenges %}
+      <li><a href="/challenges/{{ category.slug }}/{{ challenge.slug }}">{{ challenge.label }}</a></li>
+    {% endfor %}
+  </ul>
 {% endblock %}

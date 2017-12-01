@@ -15,17 +15,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH . 'third_party/community_auth/core/Auth_Controller.php';
 
-class MY_Controller extends Auth_Controller{
-
-  public function __construct() {
-    parent::__construct();
-
-    $this->load->library('twig');
-
-    $this->load->model('categories_model');
-    $categories = $this->categories_model->getAll();
-
-    $this->load->vars('categories', $categories);
-  }
-
+class MY_Controller extends Auth_Controller
+{
+	/**
+	 * Class constructor
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+	}
 }
+
+/* End of file MY_Controller.php */
+/* Location: /community_auth/core/MY_Controller.php */

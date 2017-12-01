@@ -12,7 +12,8 @@ class Challenges extends MY_Controller{
 
     $this->twig->display('challenges/category.twig', [
       "page" => $category->slug,
-      "category" => $category
+      "category" => $category,
+      "title" => "Challenges de " . $category->label
     ]);
   }
 
@@ -21,8 +22,8 @@ class Challenges extends MY_Controller{
 
     $this->twig->display('challenges/challenge.twig', [
       "page" => $category,
-      "challenge" => $challenge
+      "challenge" => $challenge,
+      "title" => $challenge->label
     ]);
   }
-
 }

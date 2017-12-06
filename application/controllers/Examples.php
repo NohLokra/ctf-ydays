@@ -18,7 +18,7 @@ class Examples extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
+    show_404();
 		// Force SSL
 		//$this->force_ssl();
 
@@ -47,7 +47,7 @@ class Examples extends MY_Controller
 			echo $this->load->view('examples/page_footer', '', TRUE);
 		}
 	}
-	
+
 	// -----------------------------------------------------------------------
 
 	/**
@@ -58,14 +58,14 @@ class Examples extends MY_Controller
 	public function home()
 	{
 		$this->is_logged_in();
-		
+
 		echo $this->load->view('examples/page_header', '', TRUE);
 
 		echo '<p>Welcome Home</p>';
 
 		echo $this->load->view('examples/page_footer', '', TRUE);
 	}
-	
+
 	// -----------------------------------------------------------------------
 
 	/**
@@ -105,14 +105,14 @@ class Examples extends MY_Controller
 
 		echo $this->load->view('examples/page_footer', '', TRUE);
 	}
-	
+
 	// -----------------------------------------------------------------------
 
 	/**
 	 * Here we simply verify if a user is logged in, but
-	 * not enforcing authentication. The presence of auth 
-	 * related variables that are not empty indicates 
-	 * that somebody is logged in. Also showing how to 
+	 * not enforcing authentication. The presence of auth
+	 * related variables that are not empty indicates
+	 * that somebody is logged in. Also showing how to
 	 * get the contents of the HTTP user cookie.
 	 */
 	public function simple_verification()
@@ -132,7 +132,7 @@ class Examples extends MY_Controller
 			if( $http_user_cookie_contents = $this->input->cookie( config_item('http_user_cookie_name') ) )
 			{
 				$http_user_cookie_contents = unserialize( $http_user_cookie_contents );
-				
+
 				echo '<br />
 					<pre>';
 
@@ -153,7 +153,7 @@ class Examples extends MY_Controller
 
 			/**
 			 * ACL usage doesn't require ACL be added to auth vars.
-			 * If query not performed during authentication, 
+			 * If query not performed during authentication,
 			 * the acl_permits function will query the DB.
 			 */
 			if( $this->acl_permits('general.secret_action') )
@@ -170,7 +170,7 @@ class Examples extends MY_Controller
 
 		echo $this->load->view('examples/page_footer', '', TRUE);
 	}
-	
+
 	// -----------------------------------------------------------------------
 
 	/**
@@ -192,10 +192,10 @@ class Examples extends MY_Controller
 	{
 		// Customize this array for your user
 		$user_data = [
-			'username'   => 'skunkbot',
-			'passwd'     => 'PepeLePew7',
-			'email'      => 'skunkbot@example.com',
-			'auth_level' => '1', // 9 if you want to login @ examples/index.
+			'username'   => 'Zozo',
+			'passwd'     => '03942030aA;',
+			'email'      => 'pierrick.couget@ynov.com',
+			'auth_level' => '9'
 		];
 
 		$this->is_logged_in();
@@ -225,9 +225,9 @@ class Examples extends MY_Controller
 				'rules' => [
 					'trim',
 					'required',
-					[ 
-						'_check_password_strength', 
-						[ $this->validation_callables, '_check_password_strength' ] 
+					[
+						'_check_password_strength',
+						[ $this->validation_callables, '_check_password_strength' ]
 					]
 				],
 				'errors' => [
@@ -276,13 +276,13 @@ class Examples extends MY_Controller
 
 		echo $this->load->view('examples/page_footer', '', TRUE);
 	}
-	
+
 	// -----------------------------------------------------------------------
 
 	/**
-	 * This login method only serves to redirect a user to a 
+	 * This login method only serves to redirect a user to a
 	 * location once they have successfully logged in. It does
-	 * not attempt to confirm that the user has permission to 
+	 * not attempt to confirm that the user has permission to
 	 * be on the page they are being redirected to.
 	 */
 	public function login()
@@ -357,9 +357,9 @@ class Examples extends MY_Controller
 						 * Method is called 4 times for a 88 character string, and then
 						 * trimmed to 72 characters
 						 */
-						$recovery_code = substr( $this->authentication->random_salt() 
-							. $this->authentication->random_salt() 
-							. $this->authentication->random_salt() 
+						$recovery_code = substr( $this->authentication->random_salt()
+							. $this->authentication->random_salt()
+							. $this->authentication->random_salt()
 							. $this->authentication->random_salt(), 0, 72 );
 
 						// Update user record with recovery code and time
@@ -377,10 +377,10 @@ class Examples extends MY_Controller
 						// Set URI of link
 						$link_uri = 'examples/recovery_verification/' . $user_data->user_id . '/' . $recovery_code;
 
-						$view_data['special_link'] = anchor( 
-							site_url( $link_uri, $link_protocol ), 
-							site_url( $link_uri, $link_protocol ), 
-							'target ="_blank"' 
+						$view_data['special_link'] = anchor(
+							site_url( $link_uri, $link_protocol ),
+							site_url( $link_uri, $link_protocol ),
+							'target ="_blank"'
 						);
 
 						$view_data['confirmation'] = 1;
@@ -409,7 +409,7 @@ class Examples extends MY_Controller
 
 	/**
 	 * Verification of a user by email for recovery
-	 * 
+	 *
 	 * @param  int     the user ID
 	 * @param  string  the passwd recovery code
 	 */
@@ -425,9 +425,9 @@ class Examples extends MY_Controller
 			// Load resources
 			$this->load->model('examples/examples_model');
 
-			if( 
+			if(
 				/**
-				 * Make sure that $user_id is a number and less 
+				 * Make sure that $user_id is a number and less
 				 * than or equal to 10 characters long
 				 */
 				is_numeric( $user_id ) && strlen( $user_id ) <= 10 &&
@@ -438,13 +438,13 @@ class Examples extends MY_Controller
 				strlen( $recovery_code ) == 72 &&
 
 				/**
-				 * Try to get a hashed password recovery 
+				 * Try to get a hashed password recovery
 				 * code and user salt for the user.
 				 */
 				$recovery_data = $this->examples_model->get_recovery_verification_data( $user_id ) )
 			{
 				/**
-				 * Check that the recovery code from the 
+				 * Check that the recovery code from the
 				 * email matches the hashed recovery code.
 				 */
 				if( $recovery_data->passwd_recovery_code == $this->authentication->check_passwd( $recovery_data->passwd_recovery_code, $recovery_code ) )
@@ -474,7 +474,7 @@ class Examples extends MY_Controller
 			}
 
 			/**
-			 * If form submission is attempting to change password 
+			 * If form submission is attempting to change password
 			 */
 			if( $this->tokens->match )
 			{
@@ -601,8 +601,8 @@ class Examples extends MY_Controller
 			{
 				$this->tokens->name = 'login_token';
 
-				$on_hold = ( 
-					$this->authentication->on_hold === TRUE OR 
+				$on_hold = (
+					$this->authentication->on_hold === TRUE OR
 					$this->authentication->current_hold_status()
 				)
 				? 1 : 0;
@@ -610,7 +610,7 @@ class Examples extends MY_Controller
 				echo json_encode([
 					'status'  => 0,
 					'count'   => $this->authentication->login_errors_count,
-					'on_hold' => $on_hold, 
+					'on_hold' => $on_hold,
 					'token'   => $this->tokens->token()
 				]);
 			}
@@ -622,19 +622,19 @@ class Examples extends MY_Controller
 			show_404();
 		}
 	}
-	
+
 	// -----------------------------------------------------------------------
 
 	/**
-	 * If you are using some other way to authenticate a created user, 
-	 * such as Facebook, Twitter, etc., you will simply call the user's 
+	 * If you are using some other way to authenticate a created user,
+	 * such as Facebook, Twitter, etc., you will simply call the user's
 	 * record from the database, and pass it to the maintain_state method.
 	 *
-	 * So, you must know either the user's username or email address to 
+	 * So, you must know either the user's username or email address to
 	 * log them in.
 	 *
 	 * How you would safely implement this in your application is your choice.
-	 * Please keep in mind that such functionality bypasses all of the 
+	 * Please keep in mind that such functionality bypasses all of the
 	 * checks that Community Auth does during a normal login.
 	 */
 	public function social_login()
@@ -651,7 +651,7 @@ class Examples extends MY_Controller
 			{
 				/**
 				 * If redirect param exists, user redirected there.
-				 * This is entirely optional, and can be removed if 
+				 * This is entirely optional, and can be removed if
 				 * no redirect is desired.
 				 */
 				$this->authentication->redirect_after_login();
@@ -665,7 +665,7 @@ class Examples extends MY_Controller
 			echo 'Example requires that you set a username or email address.';
 		}
 	}
-	
+
 	// -----------------------------------------------------------------------
 }
 

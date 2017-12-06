@@ -21,6 +21,8 @@ class MY_Controller extends Auth_Controller{
     parent::__construct();
 
     $this->load->library('twig');
+    $this->load->helper("url");
+    $this->load->helper("form");
 
     $this->load->model('categories_model');
     $categories = $this->categories_model->getAll();

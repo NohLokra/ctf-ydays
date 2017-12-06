@@ -100,7 +100,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -314,7 +314,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = hex2bin('2f6bf53eda060e96c964da509b612e26');
 
 /*
 |--------------------------------------------------------------------------

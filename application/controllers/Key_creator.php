@@ -1,4 +1,4 @@
-<?php 
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -13,15 +13,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link        http://community-auth.com
  */
 
-class Key_creator extends CI_Controller{
-	
+class Key_creator extends CI_Controller {
+
 	/**
 	 * The key creator is only available if there is no current encryption key.
 	 * If for some reason you'd like to use this controller and you already
 	 * have an encryption key set in config/config, comment out lines 27 and 28.
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct();
 
 		if( ! empty( config_item('encryption_key') ) )
@@ -33,8 +32,7 @@ class Key_creator extends CI_Controller{
 	/**
 	 * Choose an encryption cipher
 	 */
-	public function index()
-	{
+	public function index() {
 		$this->load->helper('url');
 
 		$options = [
@@ -64,12 +62,12 @@ class Key_creator extends CI_Controller{
 
 		foreach( $options as $k => $v )
 		{
-			echo '<li>' . anchor( 'key_creator/create/' . $k, $v ) . '</li>';
+			echo '<li><a href="key_creator/create/' . $k . '">' . $v . '</a></li>';
 		}
 
 		echo '</ul>';
 	}
-	
+
 	// -----------------------------------------------------------------------
 
 	/**
@@ -85,10 +83,10 @@ class Key_creator extends CI_Controller{
 
 		$key = bin2hex( $this->encryption->create_key( $length ) );
 
-		echo '// ' . $cipher . '<br /> 
+		echo '// ' . $cipher . '<br />
 		$config[\'encryption_key\'] = hex2bin(\'' . $key . '\');';
 	}
-	
+
 	// -----------------------------------------------------------------------
 }
 

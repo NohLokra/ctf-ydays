@@ -1,0 +1,40 @@
+{% extends 'layouts/main_layout.twig' %}
+
+{% block body %}
+  <h1 class="page-header">{{ title }}</h1>
+  <hr/>
+  <form class="form" method="post">
+    <div class="row">
+      <div class="col-8 col-md-6 offset-md-1 form-group">
+        <label for="label_input">Libellé *</label>
+        <input type="text" name="label" id="label_input" class="form-control" required {% if label is defined %} value="{{ label }}" {% endif %}/>
+      </div>
+      <div class="col-4 col-md-3 form-group">
+        <label for="category_id">Catégorie *</label>
+        <select id="category_id" name="category_id" required class="form-control">
+          <option value="" disabled selected></option>
+          {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-9 offset-md-1 form-group">
+        <label for="description">Description *</label>
+        <textarea name="description" id="description" required class="form-control" rows="10">{% if description is defined %}{{ description }}{% endif %}</textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-9 offset-md-1 form-group">
+        <label for="password">Flag *</label>
+        <input type="text" class="form-control" required {% if password is defined %} value="{{ password }}" {% endif %} name="password" id="password" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 offset-md-1">
+        <input type="submit" class="form-control btn btn-primary" value="Soumettre ce challenge" />
+      </div>
+    </div>
+  </form>
+{% endblock %}

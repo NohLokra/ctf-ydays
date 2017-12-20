@@ -3,9 +3,9 @@
 {% block body %}
   <h1>{{ category.label }}</h1>
   <p>{{ category.description }}</p>
-  <ul>
+  <div class="list-group">
     {% for challenge in category.challenges %}
-      <li><a href="/challenges/{{ category.slug }}/{{ challenge.slug }}">{{ challenge.label }}</a></li>
+      <a class="list-group-item" href="/challenges/{{ category.slug }}/{{ challenge.slug }}">{{ challenge.label }}</a>
     {% endfor %}
-  </ul>
+  </div>
 {% endblock %}

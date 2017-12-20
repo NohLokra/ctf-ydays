@@ -23,4 +23,21 @@ class User extends MY_Controller{
     $this->twig->display('user/login_form.twig');
   }
 
+  function logout() {
+    $this->authentication->logout();
+
+		// Set redirect protocol
+		$redirect_protocol = USE_SSL ? 'https' : NULL;
+
+		redirect( site_url( LOGIN_PAGE . '?' . AUTH_LOGOUT_PARAM . '=1', $redirect_protocol ) );
+  }
+
+  function profile() {
+    $this->twig->display('messages/success.twig', [
+      "message_intro" => "Profil",
+      "message" => "Bienvenue sur votre profil",
+      "page" => "profile"
+    ]);
+  }
+
 }

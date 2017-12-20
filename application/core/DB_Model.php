@@ -5,16 +5,18 @@ class DB_Model extends CI_Model {
   protected $table;
   protected $database;
 
-  public function __construct($database, $table, $id_col = "id") {
+  public function __construct($database, $table, $id_col = "id", $file_columns = []) {
     parent::__construct();
 
     $this->database = $database;
     $this->table = $table;
     $this->id_column = $id_col;
+    $this->file_columns = $file_columns;
 
     $this->load->database($database);
 
     $this->load->helper("url");
+    $this->load->config('uploads', true);
   }
 
   public function get($id) {
@@ -28,8 +30,9 @@ class DB_Model extends CI_Model {
     return $this->db->get($this->table)->result();
   }
 
-  public function create($data) { // $data peut $être une table associative ou un objet
+  public function create($data) { // $data peut être une table associative ou un objet
     $data = (array)$data;
+    $data = $this->store_files($data);
 
     if ( $this->db->insert($this->table, $data) ) {
       return $this->get($this->db->insert_id());
@@ -43,49 +46,10 @@ class DB_Model extends CI_Model {
     log_message('debug', '[DB_Model] Demande de mise à jour du produit ' . $id);
 
     $data = (array)$data;
-
+    $data = $this->store_files($data);
+    
     if ( count($this->file_columns) > 0 ) {
       $record = $this->get($id);
-      log_message('debug', "[DB_Model] Produit récupéré dans la base de données: " . json_encode($record));
-      log_message('debug', '[DB_Model] Voici l\'instance actuelle du modèle: ' . json_encode($this));
-
-      foreach ( $this->file_columns as $file_column ) {
-        if ( isset($data[$file_column]) ) {
-          //On commence par gérer l'upload de l'image
-          $uploaddir = "";
-
-          $file = $data[$file_column];
-          $filename = $file["name"];
-          $imageName = "";
-
-          if ( $this->table == "products" ) {
-            $this->load->model("providers_model");
-            $provider = $this->providers_model->get($record->provider_id);
-
-            log_message('debug', "[DB_Model] Fournisseur du produit:" . json_encode($provider));
-
-            $imageName = "taylorbox - " . $provider->label . " " . $record->label;
-            log_message('debug', "[DB_Model] Nom d'image avant génération: " . $imageName);
-            $imageName = $this->craftImageName($imageName, $filename);
-            log_message('debug', '[DB_Model] Mise à jour du champs ' . $file_column . ' dans la table ' . $this->table . ' pour l\'enregistrement ' . $id);
-            log_message('debug', "[DB_Model] Nom d'image généré: " . $imageName);
-          } else {
-            $imageName = $this->craftImageName($record->label, $filename, ((isset($record->index) ? $record->index + 1 : 0)));
-          }
-
-
-          $uploaddir = "/var/www/static/taylorbox/images/" . $this->table . "/" . $file_column . "/large_700_1000/";
-
-          if( !is_dir($uploaddir) )
-            mkdir($uploaddir);
-
-          $filepath = $uploaddir . $imageName;
-          move_uploaded_file($file["tmp_name"], $filepath);
-
-          //Maintenant on s'occupe de gérer l'insertion dans la bdd
-          $data[$file_column] = $imageName;
-        }
-      }
     }
 
     if ( $this->db->where($this->id_column, $id)->update($this->table, $data) ) {
@@ -102,14 +66,10 @@ class DB_Model extends CI_Model {
 
       foreach ( $this->file_columns as $file_column ) {
         $filename = $record->$file_column;
-        $sizes = ["large_700_1000", "medium_570_760", "small_270_360"];
-
-        foreach ( $sizes as $size ) {
-          $filepath = "/var/www/static/taylorbox/images/" . $this->table . "/" . $file_column . "/" . $size . "/" . $filename;
+        $filepath = $this->config->config["upload_path"] . $filename;
 
           if ( file_exists($filepath) )
             unlink($filepath);
-        }
       }
     }
 
@@ -137,18 +97,25 @@ class DB_Model extends CI_Model {
     return $this->db->where($searchArray)->get($this->table)->result();
   }
 
-  protected function craftImageName($label, $filename = "undefined.jpg", $index = 0) {
-    $file_data = pathinfo($filename);
-    log_message('error', "Informations sur le fichier: " . json_encode($file_data));
+  protected function store_files($data) {
+    $this->load->library('upload', $this->config->config['uploads']);
 
-    $name = strtolower(url_title(strip_accents($label)) . "-" . $index);
+    foreach ( $this->file_columns as $fc ) {
+      if (!empty($_FILES[$fc]['name'])) {
+        $challenge[$fc] = $_FILES[$fc];
 
-    if ( isset($file_data["extension"]) )
-      $name .= "." . $file_data["extension"];
-    else
-      $name .= ".jpg";
+        if ( $this->upload->do_upload($fc) ) {
+          $upload_result = $this->upload->data();
+          $data[$fc] = $upload_result['file_name'];
+        } else {
+          $error = array('error' => $this->upload->display_errors());
 
-    return strtolower($name);
+          throw new Exception(print_r($error, true), 1);
+        }
+      }
+    }
+
+    return $data;
   }
 
 }

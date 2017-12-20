@@ -20,8 +20,8 @@
 
   class MY_Model extends DB_Model {
 
-    public function __construct($table = "", $id_col = "id") {
-      parent::__construct(ENVIRONMENT, $table, $id_col);
+    public function __construct($table = "", $id_col = "id", $file_columns = []) {
+      parent::__construct(ENVIRONMENT, $table, $id_col, $file_columns);
     }
 
     // -----------------------------------------------------------------------

@@ -43,9 +43,18 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item" data-page="profil">
-            <a class="nav-link" href="#"><i class="fa fa-user"></i> Mon profil</a>
-          </li>
+          {% if is_logged_in %}
+            <li class="nav-item" data-page="profile">
+              <a class="nav-link" href="/user/profile"><i class="fa fa-user"></i> Mon profil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout"><i class="fa fa-exit"></i> Déconnexion</a>
+            </li>
+          {% else %}
+            <li class="nav-item" data-page="login">
+              <a href="/login" class="nav-link"><i class="fa fa-user"></i> Me connecter</a>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </nav>

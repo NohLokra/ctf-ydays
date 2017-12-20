@@ -44,7 +44,7 @@ class Challenges extends MY_Controller{
           "label" => $this->input->post("label"),
           "description" => $this->input->post("description"),
           "password_hash" => $this->authentication->hash_passwd($this->input->post("password")),
-          "category_id" => $this->input->post('category_id')
+          "category_id" => $this->input->post('category_id'),
         ];
 
         $this->challenges_model->create($challenge);

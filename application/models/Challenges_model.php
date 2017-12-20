@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Challenges_model extends MY_Model{
 
   public function __construct() {
-    parent::__construct("challenges");
+    parent::__construct("challenges", "id", ["file"]);
   }
 
   public function getForCategory($cat_id) {

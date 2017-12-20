@@ -1,1 +1,18 @@
 {% extends 'layouts/main_layout.twig' %}
+
+{% block body %}
+    <h1>{{ challenge.label }}</h1>
+    <hr/>
+    <div class="row">
+        <p class="col-12">{{ challenge.description }}</p>
+    </div>
+    {% if challenge.file %}
+        <hr/>
+        <h5>Ces fichiers vous seront utiles pour votre challenge</h5>
+        <div class="row">
+            <p class="col-12">
+                <a href="/uploads/{{ challenge.file }}">Télécharger l'archive</a>
+            </p>
+        </div>
+    {% endif %}
+{% endblock body %}

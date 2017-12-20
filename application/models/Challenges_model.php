@@ -11,4 +11,10 @@ class Challenges_model extends MY_Model{
     return $this->db->where('category_id', $cat_id)->get($this->table)->result();
   }
 
+  public function getBySlug($slug) {
+    return $this->search([
+      "slug" => $slug
+    ])[0];
+  }
+
 }

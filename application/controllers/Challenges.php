@@ -17,9 +17,9 @@ class Challenges extends MY_Controller{
     ]);
   }
 
-  function challenge($category, $challenge_id) {
-    $challenge = $this->challenges_model->get($challenge_id);
-
+  function challenge($category, $challenge_slug) {
+    $challenge = $this->challenges_model->getBySlug($challenge_slug);
+    
     $this->twig->display('challenges/challenge.twig', [
       "page" => $category,
       "challenge" => $challenge,

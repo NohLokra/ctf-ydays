@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['challenges/create'] = 'challenges/create';
-$route['challenges/(:any)/(:number)'] = 'challenges/challenge/$1/$2';
+$route['challenges/(:any)/(:any)'] = 'challenges/challenge/$1/$2';
 $route['challenges/(:any)'] = 'challenges/category/$1';
 $route[LOGIN_PAGE] = 'user/login';
 $route['logout'] = 'user/logout';

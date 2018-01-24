@@ -3,6 +3,7 @@
 {% block body %}
   <div class="row">
     <div class="col">
+      <h3 class="column-header mb-4">Je me connecte</h3>      
       {% if on_hold_message is not defined %}
   
         {% if login_error_mesg is defined %}
@@ -54,7 +55,7 @@
               <input type="submit" name="submit" value="Login" id="submit_button" class="btn btn-primary form-control" />
             </div>
             <div class="form-group col">
-              <a href="/user/recover-password" class="btn btn-dark form-control">
+              <a href="/user/recover-password" class="btn btn-default form-control">
                 Mot-de-passe perdu ?
               </a>
             </div>
@@ -62,9 +63,51 @@
         </form>
       {% endif %}
     </div>
-    <div class="col">
+    <div class="col vertical-divider">
+      <h3 class="column-header mb-4">Je m'inscris</h3>
       {{ form_open( "/user/register", {class: "form"} )|raw }}
-        Pas de compte ? <a href="/user/register">Créer un compte</a>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="username-input">Nom d'utilisateur *</label>
+              <input class="form-control" type="text" id="email-input" required placeholder="Superman" />
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="form-group">
+              <label for="email-input">Adresse email *</label>
+              <input class="form-control" type="email" id="email-input" required placeholder="xxx@example.com" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="password-input">Mot-de-passe *</label>
+              <input class="form-control" name="password" id="password-input" required placeholder="********"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="password-confirm-input">Confirmer le mot-de-passe *</label>
+              <input class="form-control" name="password-confirm" id="password-confirm-input" required placeholder="********"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              &nbsp;
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <input class="btn btn-primary form-control" type="submit" value="Créer mon compte" />
+            </div>
+          </div>
+        </div>
       </form>
     </div>    
   </div>

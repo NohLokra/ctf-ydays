@@ -3,5 +3,19 @@
 @import "bootswatch";
 
 .vertical-divider {
+    border-left: 1px solid $secondary;
+}
 
+.column-header {
+    position: relative;
+
+    &::after {
+        content: '';
+        height: 2px;
+        position: absolute;
+        bottom: -15px;
+        left: 0px;
+        background-color: $primary;
+        width: 100px;
+    }
 }

@@ -1,417 +1,424 @@
-// Slate 4.0.0
+// Yeti 4.0.0
 // Bootswatch
 
 
 // Variables ===================================================================
 
-@mixin btn-shadow($color){
-    @include gradient-y-three-colors(lighten($color, 6%), $color, 60%, darken($color, 4%));
-    filter: none;
-  }
-  
-  @mixin btn-shadow-inverse($color){
-    @include gradient-y-three-colors(darken($color, 18%), darken($color, 15%), 40%, darken($color, 13%));
-    filter: none;
-  }
-  
-  // Navbar ======================================================================
-  
-  .navbar {
-    border: 1px solid rgba(0, 0, 0, 0.6);
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  
-    .container {
-      padding: 0;
+$web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700" !default;
+@import url($web-font-path);
+
+// Navbar ======================================================================
+
+.navbar {
+  font-size: $font-size-sm;
+  font-weight: $headings-font-weight;
+}
+
+.bg-primary {
+
+  .dropdown-menu {
+    background-color: $primary;
+
+    .dropdown-item,
+    .dropdown-item:focus {
+      color: $navbar-dark-color;
     }
-  
-    .navbar-toggler {
-      border-color: rgba(0, 0, 0, 0.6);
-    }
-  
-    &-fixed-top {
-      border-width: 0 0 1px 0;
-    }
-  
-    &-fixed-bottom {
-      border-width: 1px 0 0 0;
-    }
-  
-    .nav-link {
-      padding: 1rem;
-      border-left: 1px solid rgba(255, 255, 255, 0.1);
-      border-right: 1px solid rgba(0, 0, 0, 0.2);
-  
-      &:hover,
-      &:focus {
-        @include btn-shadow-inverse($gray-800);
-        border-left: 1px solid rgba(0, 0, 0, 0.2);
-      }
-    }
-  
-    &-brand {
-      padding: 0.75rem 1rem calc(54px - 0.75rem - 30px);
-      margin-right: 0;
-      border-right: 1px solid rgba(0, 0, 0, 0.2);
-    }
-  
-    .nav-item.active .nav-link {
-      background-color: rgba(0, 0, 0, 0.3);
-      border-left: 1px solid rgba(0, 0, 0, 0.2);
-    }
-  
-    &-nav .nav-item + .nav-item {
-      margin-left: 0;
-    }
-  
-    &.bg-light {
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  
-      .nav-link {
-        &:hover,
-        &:focus {
-          @include btn-shadow-inverse($gray-600);
-          border-left: 1px solid rgba(0, 0, 0, 0.2);
-        }
-      }
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .navbar-expand-sm {
-      .navbar-brand,
-      .nav-link {
-        border: none !important;
-      }
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .navbar-expand-md {
-      .navbar-brand,
-      .nav-link {
-        border: none !important;
-      }
-    }
-  }
-  
-  @media (max-width: 992px) {
-    .navbar-expand-lg {
-      .navbar-brand,
-      .nav-link {
-        border: none !important;
-      }
-    }
-  }
-  
-  // Buttons =====================================================================
-  
-  .btn {
-    border-color: rgba(0, 0, 0, 0.6);
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  
-    &:not([disabled]):not(.disabled).active,
-    &.disabled {
-      border-color: rgba(0, 0, 0, 0.6);
-      box-shadow: none;
-    }
-  
-    &:hover,
-    &:focus,
-    &:not([disabled]):not(.disabled):active,
-    &:not([disabled]):not(.disabled):active:hover,
-    &:not([disabled]):not(.disabled).active:hover {
-      border-color: rgba(0, 0, 0, 0.6);
-    }
-  }
-  
-  .btn-primary {
-    @include btn-shadow($primary);
-  
-    &:not([disabled]):not(.disabled):hover,
-    &:not([disabled]):not(.disabled):focus,
-    &:not([disabled]):not(.disabled):active:hover,
-    &:not([disabled]):not(.disabled).active:hover {
-      @include btn-shadow-inverse($primary);
-    }
-  }
-  
-  .btn-secondary {
-    @include btn-shadow($secondary);
-  
-    &:not([disabled]):not(.disabled):hover,
-    &:not([disabled]):not(.disabled):focus,
-    &:not([disabled]):not(.disabled):active,
-    &:not([disabled]):not(.disabled).active {
-      @include btn-shadow-inverse($secondary);
-    }
-  }
-  
-  .btn-success {
-    @include btn-shadow($success);
-    color: $white;
-  
-    &:not([disabled]):not(.disabled):hover,
-    &:not([disabled]):not(.disabled):focus,
-    &:not([disabled]):not(.disabled):active,
-    &:not([disabled]):not(.disabled).active {
-      @include btn-shadow-inverse($success);
-    }
-  }
-  
-  .btn-info {
-    @include btn-shadow($info);
-    color: $white;
-  
-    &:not([disabled]):not(.disabled):hover,
-    &:not([disabled]):not(.disabled):focus,
-    &:not([disabled]):not(.disabled):active,
-    &:not([disabled]):not(.disabled).active {
-      @include btn-shadow-inverse($info);
-    }
-  }
-  
-  .btn-warning {
-    @include btn-shadow($warning);
-    color: $white;
-  
-    &:not([disabled]):not(.disabled):hover,
-    &:not([disabled]):not(.disabled):focus,
-    &:not([disabled]):not(.disabled):active,
-    &:not([disabled]):not(.disabled).active {
-      @include btn-shadow-inverse($warning);
-    }
-  }
-  
-  .btn-danger {
-    @include btn-shadow($danger);
-  
-    &:not([disabled]):not(.disabled):hover,
-    &:not([disabled]):not(.disabled):focus,
-    &:not([disabled]):not(.disabled):active,
-    &:not([disabled]):not(.disabled).active {
-      @include btn-shadow-inverse($danger);
-    }
-  }
-  
-  .btn-link,
-  .btn-link:hover {
-    border-color: transparent;
-  }
-  
-  .btn-group,
-  .btn-group-vertical {
-  
-    .btn.active {
-      border-color: rgba(0, 0, 0, 0.6);
-    }
-  }
-  
-  // Typography ==================================================================
-  
-  h1, h2, h3, h4, h5, h6 {
-    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
-  }
-  
-  // Tables ======================================================================
-  
-  .table {
-    &-success,
-    &-info,
-    &-warning,
-    &-danger {
+
+    .dropdown-item.active,
+    .dropdown-item:hover,
+    .dropdown-item:focus {
+      background-color: darken($primary, 5%);
       color: #fff;
     }
   }
-  
-  .table {
-  
-    .thead-dark th {
-      color: $white;
+}
+
+.bg-dark {
+  background-color: $gray-800 !important;
+
+  .dropdown-menu {
+    background-color: $gray-800;
+
+    .dropdown-item,
+    .dropdown-item:focus {
+      color: $navbar-dark-color;
     }
-  
-    &-success {
-      &, > th, > td {
-        background-color: $success;
-      }
-    }
-  
-    &-info {
-      &, > th, > td {
-        background-color: $info;
-      }
-    }
-  
-    &-danger {
-      &, > th, > td {
-        background-color: $danger;
-      }
-    }
-  
-    &-warning {
-      &, > th, > td {
-        background-color: $warning;
-      }
-    }
-  
-    &-hover {
-  
-      .table-success:hover {
-        &, > th, > td {
-          background-color: darken($success, 5%);
-        }
-      }
-  
-      .table-info:hover {
-        &, > th, > td {
-          background-color: darken($info, 5%);
-        }
-      }
-  
-      .table-danger:hover {
-        &, > th, > td {
-          background-color: darken($danger, 5%);
-        }
-      }
-  
-      .table-warning:hover {
-        &, > th, > td {
-          background-color: darken($warning, 5%);
-        }
-      }
-  
+
+    .dropdown-item.active,
+    .dropdown-item:hover,
+    .dropdown-item:focus  {
+      background-color: darken($gray-800, 5%);
+      color: #fff;
     }
   }
-  
-  // Forms =======================================================================
-  
-  legend {
+}
+
+.bg-light {
+
+  .dropdown-menu {
+    background-color: $gray-200;
+
+    .dropdown-item,
+    .dropdown-item:focus {
+      color: $navbar-light-color;
+    }
+
+    .dropdown-item.active,
+    .dropdown-item:hover,
+    .dropdown-item:focus  {
+      background-color: lighten($gray-200, 5%);
+      color: $navbar-light-hover-color;
+    }
+  }
+}
+
+// Buttons =====================================================================
+
+.btn {
+  &-primary {
+    border-color: darken($primary, 5%);
+  }
+
+  &-secondary {
+    border-color: darken($secondary, 5%);
+  }
+
+  &-success {
+    border-color: darken($success, 5%);
+  }
+
+  &-info {
+    border-color: darken($info, 5%);
+    color: $white;
+  }
+
+  &-danger {
+    border-color: darken($danger, 5%);
+  }
+
+  &-warning {
+    border-color: darken($warning, 5%);
+    color: $white;
+  }
+
+  &-light {
+    border-color: darken($light, 5%);
+  }
+
+  &-dark {
+    border-color: darken($dark, 5%);
+  }
+}
+
+.btn-group {
+
+  .dropdown-menu {
+    border-top-width: 0;
+  }
+
+  .dropdown-toggle {
+
+    &.btn-primary ~ .dropdown-menu {
+      background-color: $primary;
+      border-color: darken($primary, 5%);
+
+      .dropdown-item {
+        color: $white;
+      }
+
+      .dropdown-item:hover,
+      .dropdown-item:focus {
+        background-color: darken($primary, 8%);
+      }
+    }
+
+    &.btn-secondary ~ .dropdown-menu {
+      background-color: $secondary;
+      border-color: darken($secondary, 5%);
+
+      .dropdown-item {
+        color: $white;
+      }
+
+      .dropdown-item:hover,
+      .dropdown-item:focus {
+        background-color: darken($secondary, 8%);
+      }
+    }
+
+    &.btn-success ~ .dropdown-menu {
+      background-color: $success;
+      border-color: darken($success, 5%);
+
+      .dropdown-item {
+        color: $white;
+      }
+
+      .dropdown-item:hover,
+      .dropdown-item:focus {
+        background-color: darken($success, 8%);
+      }
+    }
+
+    &.btn-info ~ .dropdown-menu {
+      background-color: $info;
+      border-color: darken($info, 5%);
+
+      .dropdown-item {
+        color: $white;
+      }
+
+      .dropdown-item:hover,
+      .dropdown-item:focus {
+        background-color: darken($info, 8%);
+      }
+    }
+
+    &.btn-warning ~ .dropdown-menu {
+      background-color: $warning;
+      border-color: darken($warning, 5%);
+
+      .dropdown-item {
+        color: $white;
+      }
+
+      .dropdown-item:hover,
+      .dropdown-item:focus {
+        background-color: darken($warning, 8%);
+      }
+    }
+
+    &.btn-danger ~ .dropdown-menu {
+      background-color: $danger;
+      border-color: darken($primary, 5%);
+
+      .dropdown-item {
+        color: $white;
+      }
+
+      .dropdown-item:hover,
+      .dropdown-item:focus {
+        background-color: darken($danger, 8%);
+      }
+    }
+  }
+}
+
+// Typography ==================================================================
+
+.blockquote-footer {
+  color: $gray-600;
+}
+
+// Tables ======================================================================
+
+table {
+  font-size: $font-size-sm;
+}
+
+.table {
+
+  &-success,
+  &-info,
+  &-warning,
+  &-danger {
     color: #fff;
   }
-  
-  .input-group-addon {
-    @include btn-shadow($secondary);
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-    color: $white;
-  }
-  
-  // Navs ========================================================================
-  
-  .nav-tabs {
-  
-    .nav-link,
-    .nav-link:hover {
-      color: #fff;
+
+  &-success {
+    &, > th, > td {
+      background-color: $success;
     }
   }
-  
-  .nav-pills {
-  
-    .nav-link {
-      @include btn-shadow($gray-800);
-      border: 1px solid rgba(0, 0, 0, 0.6);
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-      color: #fff;
-  
-      &:hover {
-        @include btn-shadow-inverse($gray-800);
-        border: 1px solid rgba(0, 0, 0, 0.6);
+
+  &-info {
+    &, > th, > td {
+      background-color: $info;
+    }
+  }
+
+  &-danger {
+    &, > th, > td {
+      background-color: $danger;
+    }
+  }
+
+  &-warning {
+    &, > th, > td {
+      background-color: $warning;
+    }
+  }
+
+  &-hover {
+
+    .table-success:hover {
+      &, > th, > td {
+        background-color: darken($success, 5%);
       }
     }
-  
-    .nav-link.active,
-    .nav-link:hover {
-      background-color: transparent;
-      @include btn-shadow-inverse($gray-800);
-      border: 1px solid rgba(0, 0, 0, 0.6);
-    }
-  
-    .nav-link.disabled,
-    .nav-link.disabled:hover {
-      @include btn-shadow($gray-800);
-      color: $nav-link-disabled-color;
-    }
-  }
-  
-  .pagination {
-  
-    .page-link {
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-      @include btn-shadow($gray-800);
-  
-      &:hover {
-        @include btn-shadow-inverse($gray-800);
-        text-decoration: none;
+
+    .table-info:hover {
+      &, > th, > td {
+        background-color: darken($info, 5%);
       }
     }
-  
-    .page-item.active .page-link {
-      @include btn-shadow-inverse($gray-800);
+
+    .table-danger:hover {
+      &, > th, > td {
+        background-color: darken($danger, 5%);
+      }
     }
-  
-    .page-item.disabled .page-link {
-      @include btn-shadow($gray-800);
+
+    .table-warning:hover {
+      &, > th, > td {
+        background-color: darken($warning, 5%);
+      }
     }
+
   }
-  
-  .breadcrumb {
-    border: 1px solid rgba(0, 0, 0, 0.6);
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-    background-color: transparent;
-    @include btn-shadow($gray-800);
-  
-    a,
-    a:hover {
-      color: #fff;
-    }
+}
+
+// Forms =======================================================================
+
+label,
+.control-label,
+.help-block,
+.checkbox,
+.radio,
+.form-control-feedback {
+  font-size: $font-size-sm;
+}
+
+// Navs ========================================================================
+
+.dropdown-item {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: $font-size-sm;
+  font-weight: 300;
+}
+
+.nav-tabs {
+  .nav-link,
+  .nav-link.disabled,
+  .nav-link.disabled:hover,
+  .nav-link.disabled:focus {
+    border-color: $nav-tabs-border-color;
+    background-color: $gray-200;
   }
-  
-  // Indicators ==================================================================
-  
-  .alert {
-  
-    .close {
-      color: $close-color;
+
+  .nav-link:hover,
+  .nav-link:focus {
+    background-color: lighten($gray-200, 5%);
+  }
+}
+
+.nav-pills {
+  .active {
+    border: 1px solid darken($primary, 5%);
+  }
+}
+
+.breadcrumb {
+  border: 1px solid $dropdown-border-color;
+  border-radius: 3px;
+  font-size: $font-size-sm;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.pagination {
+  font-weight: 300;
+
+  .page-link {
+    border-color: transparent;
+    border-radius: 3px;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+
+    &:hover,
+    &:focus {
       text-decoration: none;
     }
   }
-  
-  .alert {
-    border: none;
+
+  .page-item.disabled {
+    .page-link {
+      border-color: transparent;
+    }
+  }
+}
+
+.list-group {
+  font-size: $font-size-sm;
+  font-weight: 300;
+}
+
+// Indicators ==================================================================
+
+.close {
+  opacity: 0.6;
+  text-shadow: none;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.alert {
+  font-size: $font-size-sm;
+  font-weight: 300;
+  color: $white;
+
+  &-success {
+    &, > th, > td {
+      background-color: $success;
+    }
+  }
+
+  &-info {
+    &, > th, > td {
+      background-color: $info;
+    }
+  }
+
+  &-danger {
+    &, > th, > td {
+      background-color: $danger;
+    }
+  }
+
+  &-warning {
+    &, > th, > td {
+      background-color: $warning;
+    }
+  }
+
+  .alert-link {
+    font-weight: normal;
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+.badge {
+  padding-bottom: .3em;
+
+  &-warning,
+  &-info {
     color: $white;
-  
-    a,
-    .alert-link {
-      color: #fff;
-      text-decoration: underline;
-    }
-  
-    @each $color, $value in $theme-colors {
-      &-#{$color} {
-        background-color: $value;
-      }
-    }
   }
-  
-  .badge {
-  
-    &-success,
-    &-warning,
-    &-info {
-      color: $white;
-    }
-  }
-  
-  // Progress bars ===============================================================
-  
-  // Containers ==================================================================
-  
-  .jumbotron {
-    border: 1px solid rgba(0, 0, 0, 0.6);
-  }
-  
-  .list-group {
-  
-    &-item:hover {
-      background-color: darken($gray-900, 5%);
-    }
-  }
+}
+
+// Progress bars ===============================================================
+
+.progress[value] {
+  height: 22px;
+  padding: 2px;
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
+  @include box-shadow(none);
+}
+
+// Containers ==================================================================

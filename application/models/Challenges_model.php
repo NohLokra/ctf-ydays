@@ -17,4 +17,30 @@ class Challenges_model extends MY_Model{
     ])[0];
   }
 
+  public function checkPasswordBySlug($slug, $flag) {
+    $challenge = $this->getBySlug($slug);
+
+    return $this->authentication->check_passwd($challenge->hashed_password, $flag);
+  }
+
+  public function getAllToValidate() {
+    return $this->search([
+      "active" => 0,
+      "removed" => 0
+    ]);
+  }
+
+  public function removeInactive($id) {
+    return $this->update($id, [
+      "removed" => 1
+    ]);
+  }
+
+  public function validate($id) {
+    return $this->update($id, [
+      "removed" => 0,
+      "active" => 1
+    ]);
+  }
+
 }

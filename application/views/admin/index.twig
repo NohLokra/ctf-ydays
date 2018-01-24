@@ -1,0 +1,31 @@
+{% extends 'layouts/main_layout.twig' %}
+
+{% block body %}
+    <h1 class="mb-4">{{ title }}</h1>
+    <div class="d-flex justify-content-around">
+        <div class="card col-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ base_url() }}admin/users">
+                        Gestion des utilisateurs
+                    </a>
+                </h5>
+                <p class="card-text">
+                    C'est ici que les Dieux se réunissent pour réguler la population de hommes... Sauf quand l'un d'entre eux prend une décision seul.
+                </p>
+            </div>
+        </div>
+        <div class="card col-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ base_url() }}admin/challenges">
+                        Gestion des challenges
+                    </a>
+                </h5>
+                <p class="card-text">
+                    En ce lieu, les Dieux décident si les épreuves proposées par les hommes feraient des joutes intéressantes pour leurs sujets.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -15,4 +15,19 @@
             </p>
         </div>
     {% endif %}
+    <div class="row">
+        <form method="post" class="form-inline">
+            <div class="form-group">
+                <label for="challenge-flag" class="sr-only">Mot-de-passe du challenge</label>
+                <div class="input-group">
+                    <input type="text" class="form-control {% if error is defined %} is-invalid {% endif %}" name="password" placeholder="Flag"/>
+                    {% if error is defined %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock body %}

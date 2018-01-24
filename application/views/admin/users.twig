@@ -1,0 +1,28 @@
+{% extends "layouts/main_layout.twig" %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom d'utilisateur</th>
+                <th>Score</th>
+                <th><!-- actions --></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>
+                        {{ user.username }}
+                    </td>
+                    <td>
+                        {{ user.score }}
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" {% if user.auth_level == 9 %} disabled{% endif %}><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

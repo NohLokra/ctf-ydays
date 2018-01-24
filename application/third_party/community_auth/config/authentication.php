@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['levels_and_roles'] = [
 	'1' => 'user',
 	'6' => 'challenges_creator',
-  '8' => 'moderator',
+  	'8' => 'moderator',
 	'9' => 'admin'
 ];
 

@@ -19,12 +19,23 @@ class Challenges extends MY_Controller{
 
   function challenge($category, $challenge_slug) {
     $challenge = $this->challenges_model->getBySlug($challenge_slug);
-    
-    $this->twig->display('challenges/challenge.twig', [
+    $flag = $this->input->post("password");
+
+    $data = [
       "page" => $category,
       "challenge" => $challenge,
       "title" => $challenge->label
-    ]);
+    ];
+
+    if ( $flag && $this->authentication->check_passwd($challenge->password_hash, $flag) ) {
+      $this->twig->display('challenges/success.twig', $data);
+    } else if ( $flag ) {
+      $data["error"] = "Le mot de passe donnée n'est pas correct";
+      
+      $this->twig->display('challenges/challenge.twig', $data);
+    } else {
+      $this->twig->display('challenges/challenge.twig', $data);      
+    }
   }
 
   function create() {

@@ -22,6 +22,8 @@
 
     public function __construct($table = "", $id_col = "id", $file_columns = []) {
       parent::__construct(ENVIRONMENT, $table, $id_col, $file_columns);
+
+      log_message('error', "Connection à l'environnement " . ENVIRONMENT);
     }
 
     // -----------------------------------------------------------------------

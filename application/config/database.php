@@ -26,7 +26,6 @@ $db['development'] = array(
 	'save_queries' => TRUE
 );
 
-
 $db['production'] = [
   'dsn'	=> '',
 	'hostname' => 'localhost',

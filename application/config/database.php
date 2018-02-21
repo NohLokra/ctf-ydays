@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$active_group = 'development';
+$active_group = ENVIRONMENT;
 $query_builder = TRUE;
 
 $db['development'] = array(

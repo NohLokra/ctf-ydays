@@ -9,8 +9,6 @@ class DB_Model extends CI_Model {
     parent::__construct();
 
     $this->database = $database;
-    log_message('error', 'Connection à l\'environnement ' . $this->database);
-    
     $this->table = $table;
     $this->id_column = $id_col;
     $this->file_columns = $file_columns;

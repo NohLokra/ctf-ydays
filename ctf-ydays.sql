@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 20 Décembre 2017 à 17:47
+-- Généré le :  Mer 07 Mars 2018 à 09:13
 -- Version du serveur :  5.6.17-log
 -- Version de PHP :  5.5.12
 
@@ -95,6 +95,18 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
+--
+-- Contenu de la table `categories`
+--
+
+INSERT INTO `categories` (`id`, `label`, `slug`, `description`) VALUES
+(1, 'Crack', 'crack', 'Les épreuves de cracking'),
+(2, 'Infra / Réseau', 'infra-reseau', 'Les épreuves d''infra et réseau'),
+(3, 'Programmation', 'programmation', 'Les épreuves de programmation'),
+(4, 'Shell', 'shell', 'Les épreuves en shell'),
+(5, 'Web Client', 'web-client', 'Les épreuves client web'),
+(6, 'Web Serveur', 'web-serveur', 'Les épreuves web orienté serveur');
+
 -- --------------------------------------------------------
 
 --
@@ -105,12 +117,25 @@ CREATE TABLE IF NOT EXISTS `challenges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(50) NOT NULL,
   `description` text NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `removed` tinyint(1) NOT NULL DEFAULT '0',
   `password_hash` text NOT NULL,
   `category_id` int(11) NOT NULL,
   `file` text,
   `slug` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Contenu de la table `challenges`
+--
+
+INSERT INTO `challenges` (`id`, `label`, `description`, `active`, `removed`, `password_hash`, `category_id`, `file`, `slug`) VALUES
+(1, 'test', 'Une superbe description pour ce fantastique challenge de test', 1, 0, '$2y$11$llfsICJ0d6dSoKqfV55s/eZVftYtPhHmOz1UkqEEMIE2zLCNGSh/6', 4, NULL, 'test'),
+(2, 'test', 'test', 1, 0, '$2y$11$qHadAWMOSU24UB8Z0niYzOKSWoE/JKNmQmbPWCFCr6VGjWERYEbRe', 4, '4_2_22.zip', 'test-1'),
+(3, 'test', 'test', 1, 0, '$2y$11$DTzZio4L4sOGPCN1cakcBeBBWKIqNoAP9Rf1FDokG/7wmFa0i3XnW', 4, '4_2_23.zip', 'test-2'),
+(4, 'Premier test', 'Le mot de passe est stocké dans un fichier lisible par un humain... Démerdez-vous avec ça les poulets !', 1, 0, '$2y$11$p7NRXjpRPwi0HeWIWqKRQOu2gOprB8pzPsC8IYRIzRHFw.HQl36oe', 4, NULL, 'premier-test'),
+(5, 'Un simple mot de passe', 'Dans l''archive donnée ici, il vous faudra contourner l''authentification de ce simple logiciel console.', 1, 0, '$2y$11$zueKK1KKidxU750UZmhk9uqwX51VDcXNgqMOwc2ju7fJ0M8J.8qmO', 1, 'crackme1.zip', 'un-simple-mot-de-passe');
 
 -- --------------------------------------------------------
 
@@ -204,6 +229,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `email`, `auth_level`, `banned`, `passwd`, `passwd_recovery_code`, `passwd_recovery_date`, `passwd_modified_at`, `last_login`, `created_at`, `modified_at`) VALUES
+(2147484848, 'Zozo', 'pierrick.couget@ynov.com', 9, '0', '$2y$11$RlSJO4pLUw1u5hFQtOtcqORkK1e.okuLy5uEmJLN0mfyllU9Hl7iC', NULL, NULL, NULL, '2018-01-24 15:45:17', '2017-12-06 15:05:59', '2018-01-24 14:45:17');
 
 --
 -- Déclencheurs `users`

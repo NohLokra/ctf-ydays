@@ -50,8 +50,8 @@ class MY_Controller extends Auth_Controller{
   protected function _get_missing_post_parameters($required_parameters) {
     $missing_params = [];
 
-    foreach ( $required_parameters as $param ) {
-      if ( !$this->input->post($param) ) array_push($missing_params, $param);
+    foreach ( $required_parameters as $param => $desc ) {
+      if ( !$this->input->post($param) ) array_push($missing_params, $desc);
     }
 
     return $missing_params;

@@ -65,12 +65,22 @@
     </div>
     <div class="col vertical-divider">
       <h3 class="column-header mb-4">Je m'inscris</h3>
-      {{ form_open( "/user/register", {class: "form"} )|raw }}
+      {{ form_open( LOGIN_PAGE, {class: "form", action: "/user"} )|raw }}
         <div class="row">
+          <div class="col-12">
+            {% if register_error is defined %}
+              <div class="alert alert-danger">
+                {{ register_error }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endif %}
+          </div>
           <div class="col-4">
             <div class="form-group">
               <label for="username-input">Nom d'utilisateur *</label>
-              <input class="form-control" type="text" id="email-input" required placeholder="Superman" />
+              <input class="form-control" type="text" id="username-input" required placeholder="Superman" />
             </div>
           </div>
           <div class="col-8">
@@ -97,7 +107,7 @@
         <div class="row">
           <div class="col-12">
             <div class="form-group">
-              &nbsp;
+              <label>&nbsp;</label>
             </div>
           </div>
         </div>

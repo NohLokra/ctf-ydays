@@ -16,17 +16,24 @@ class User extends MY_Controller
             show_404();
         }
 
-        $post = ($_SERVER['REQUEST_METHOD'] == 'post');
+        $post = (strtolower($_SERVER['REQUEST_METHOD']) == 'post');
 
 		log_message('debug', 'Demande sur la page login reçue:' . print_r($this->input->post(), true));
+        if ( $this->input->get(AUTH_LOGOUT_PARAM) ) {
+            $this->load->vars("logout", true);
+        }
+
         if ($this->_isRegisterRequest()) {
             log_message("debug", "Requête d'enregistrement reçue: " . print_r($this->input->post(), true));
 
             $this->_register();
             $this->_force_login($this->input->post('email'));
         } else if ($post) {
-            $this->require_min_level(1);
+            if ( !$this->require_min_level(1) ) {
+                $this->add_error("Nom d'utilisateur ou mot-de-passe incorrect");
+            }
         }
+
 
         $this->setup_login_form();
 

@@ -296,7 +296,7 @@ $config['show_login_form_on_logout'] = TRUE;
 | they will be redirected to. The default is to be redirected to the home page.
 */
 
-$config['default_login_redirect'] = '';
+$config['default_login_redirect'] = '/profile/me';
 
 /*
 | -----------------------------------------------------------------

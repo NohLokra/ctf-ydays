@@ -76,7 +76,7 @@ class User extends MY_Controller{
   protected function _isRegisterRequest() {
 
 
-		if ( !$this->input->post("login_string") && !$this->input->post("login_pass") ) {
+		if ( $this->input->post() && !$this->input->post("login_string") && !$this->input->post("login_pass") ) {
 			return true;
 		} else {
 			return false;

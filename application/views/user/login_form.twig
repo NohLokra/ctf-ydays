@@ -65,7 +65,7 @@
     </div>
     <div class="col vertical-divider">
       <h3 class="column-header mb-4">Je m'inscris</h3>
-      {{ form_open( LOGIN_PAGE, {class: "form", action: "/user"} )|raw }}
+      {{ form_open( LOGIN_PAGE, {class: "form"} )|raw }}
         <div class="row">
           <div class="col-12">
             {% if register_error is defined %}
@@ -80,13 +80,13 @@
           <div class="col-4">
             <div class="form-group">
               <label for="username-input">Nom d'utilisateur *</label>
-              <input class="form-control" type="text" id="username-input" required placeholder="Superman" />
+              <input class="form-control" type="text" id="username-input" name="username" required placeholder="Superman" />
             </div>
           </div>
           <div class="col-8">
             <div class="form-group">
               <label for="email-input">Adresse email *</label>
-              <input class="form-control" type="email" id="email-input" required placeholder="xxx@example.com" />
+              <input class="form-control" type="email" id="email-input" name="email" required placeholder="xxx@example.com" />
             </div>
           </div>
         </div>
@@ -94,13 +94,13 @@
           <div class="col-6">
             <div class="form-group">
               <label for="password-input">Mot-de-passe *</label>
-              <input class="form-control" name="password" id="password-input" required placeholder="********"/>
+              <input class="form-control" name="password" id="password-input" type="password" required placeholder="********"/>
             </div>
           </div>
           <div class="col-6">
             <div class="form-group">
               <label for="password-confirm-input">Confirmer le mot-de-passe *</label>
-              <input class="form-control" name="password-confirm" id="password-confirm-input" required placeholder="********"/>
+              <input class="form-control" name="password-confirm" id="password-confirm-input" type="password" required placeholder="********"/>
             </div>
           </div>
         </div>

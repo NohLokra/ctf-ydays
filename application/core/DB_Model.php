@@ -47,7 +47,7 @@ class DB_Model extends CI_Model {
 
     $data = (array)$data;
     $data = $this->store_files($data);
-    
+
     if ( count($this->file_columns) > 0 ) {
       $record = $this->get($id);
     }

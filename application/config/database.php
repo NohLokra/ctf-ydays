@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$active_group = 'development';
+$active_group = ENVIRONMENT;
 $query_builder = TRUE;
 
 $db['development'] = array(
@@ -29,8 +29,8 @@ $db['development'] = array(
 $db['production'] = [
   'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'username' => 'ctf',
+	'password' => 'ingesup2017',
 	'database' => 'ctf-ydays',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

@@ -57,7 +57,7 @@ class Challenges_model extends MY_Model
 
         $slug = parent::to_slug($data['label']);
 
-        $data['slug'] = $slug;
+        $data['slug'] = strtolower($slug);
 
         parent::create($data);
     }

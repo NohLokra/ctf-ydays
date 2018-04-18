@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/node_modules/tether/dist/css/tether.min.css">
     <link rel="stylesheet" href="/assets/dist/css/styles.css">
-    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/dist/plugins/fontawesome/css/fa-svg-with-js.css">
 
 		{% block styles %}{% endblock %}
   </head>
-  <body>
+  <body class="bg-light">
     <nav class="navbar navbar-dark bg-dark navbar-expand-md mb-4">
       <button class="navbar-toggler navbar-toggler-right my-2" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -72,6 +72,8 @@
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/node_modules/tether/dist/js/tether.min.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/assets/dist/plugins/fontawesome/js/fontawesome-all.min.js"></script>
+    
     <script>
       var $activeTab = $('[data-page={{ page }}]');
       $activeTab.addClass('active');

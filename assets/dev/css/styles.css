@@ -6280,3 +6280,12 @@ label,
     left: 0px;
     background-color: #008cba;
     width: 100px; }
+
+.text-gold {
+  color: #daa520; }
+
+.text-silver {
+  color: #a0a0a0; }
+
+.text-bronze {
+  color: #cc6633; }

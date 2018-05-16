@@ -1,33 +1,65 @@
 {% extends 'layouts/main_layout.twig' %}
 
 {% block body %}
-    <h1>{{ challenge.label }}</h1>
-    <hr/>
     <div class="row">
-        <p class="col-12">{{ challenge.description }}</p>
+        <h1 class="col-12">{{ challenge.label }}</h1>
+        <p class="col-12 col-sm-10 col-md-9 col-lg-8 challenge-stats d-flex justify-content-between ml-1"><small>{{ challenge.score }} pts</small><small>Difficulté</small><small>X% de réussite</small><small>Réussi X fois</small></p>
     </div>
-    {% if challenge.file %}
-        <hr/>
-        <h5>Ces fichiers vous seront utiles pour votre challenge</h5>
+    {% if challenge.file is not defined %}
         <div class="row">
-            <p class="col-12">
-                <a href="/uploads/{{ challenge.file }}">Télécharger l'archive</a>
-            </p>
+            <p class="col-12">{{ challenge.description }}</p>
+        </div>
+        <div class="row">
+            <form method="post" class="form-inline col-12">
+                <div class="form-group">
+                    <label for="challenge-flag" class="sr-only">Mot-de-passe du challenge</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control {% if error is defined %} is-invalid {% endif %}" name="password" placeholder="Flag"/>
+                        {% if error is defined %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
         </div>
     {% endif %}
-    <div class="row">
-        <form method="post" class="form-inline">
-            <div class="form-group">
-                <label for="challenge-flag" class="sr-only">Mot-de-passe du challenge</label>
-                <div class="input-group">
-                    <input type="text" class="form-control {% if error is defined %} is-invalid {% endif %}" name="password" placeholder="Flag"/>
-                    {% if error is defined %}
-                        <div class="invalid-feedback">
-                            {{ error }}
+    {% if challenge.file %}
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-9">
+                <p>
+                    {{ challenge.description }}
+                </p>
+                <div class="row">
+                    <form method="post" class="form-inline col-12">
+                        <div class="form-group">
+                            <label for="challenge-flag" class="sr-only">Mot-de-passe du challenge</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control {% if error is defined %} is-invalid {% endif %}" name="password" placeholder="Flag"/>
+                                {% if error is defined %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
-                    {% endif %}
+                    </form>
                 </div>
             </div>
-        </form>
-    </div>
+            <div class="col-12 col-md-4 col-lg-3 border-left border-primary pb-5 pt-2">
+                <h5>Téléchargements</h5>
+                <div class="d-flex justify-content-center">
+                    <a href="/uploads/{{ challenge.file }}" class='btn btn-primary text-light'>
+                        <span class="h1">
+                            <i class="fal fa-download"></i>
+                        </span><br/>
+                        <span class="font-weight-bold">
+                            Télécharger l'archive
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock body %}

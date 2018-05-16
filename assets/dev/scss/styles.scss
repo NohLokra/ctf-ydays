@@ -31,3 +31,20 @@
 .text-bronze {
     color: $bronze;
 }
+
+.challenge-stats {
+    small {
+        position: relative;
+
+        &::after {
+            position: absolute;
+            bottom: -3px;
+            left: 12.5%;
+            width: 75%;
+
+            content: '';
+            height: 2px;
+            background-color: $primary;
+        }
+    }
+}

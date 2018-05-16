@@ -6289,3 +6289,14 @@ label,
 
 .text-bronze {
   color: #cc6633; }
+
+.challenge-stats small {
+  position: relative; }
+  .challenge-stats small::after {
+    position: absolute;
+    bottom: -3px;
+    left: 12.5%;
+    width: 75%;
+    content: '';
+    height: 2px;
+    background-color: #43ac6a; }
